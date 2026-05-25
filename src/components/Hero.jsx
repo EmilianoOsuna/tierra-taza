@@ -39,7 +39,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="inicio" className="relative w-full h-screen flex items-center justify-start overflow-hidden">
+    <section id="inicio" className="relative w-full min-h-screen md:h-screen flex flex-col justify-between overflow-hidden bg-black">
       {/* Background Image Carousel */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="popLayout">
@@ -63,12 +63,12 @@ const Hero = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 px-6 md:px-12 lg:px-24 xl:px-32 w-full max-w-[1400px]">
+      <div className="relative z-20 px-6 md:px-12 lg:px-24 xl:px-32 w-full max-w-[1400px] flex-grow flex flex-col justify-center pt-28 md:pt-0 pb-12 md:pb-24">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col items-start max-w-2xl mt-16"
+          className="flex flex-col items-start max-w-2xl"
         >
           <motion.div variants={itemVariants} className="flex items-center gap-4 mb-6">
             <div className="h-px w-8 bg-white/50"></div>
@@ -77,7 +77,7 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] text-white leading-[1.1] mb-8 font-normal drop-shadow-lg">
+          <motion.h1 variants={itemVariants} className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] text-white leading-[1.1] mb-6 md:mb-8 font-normal drop-shadow-lg">
             <span>Café de origen,</span><br />
             <span className="relative inline-flex overflow-hidden items-center py-2 -my-2">
               <AnimatePresence mode="popLayout">
@@ -119,7 +119,7 @@ const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-0 left-0 w-full z-20 px-6 md:px-12 lg:px-24 xl:px-32 pb-8 pt-12 bg-gradient-to-t from-black/80 to-transparent"
+        className="w-full z-20 px-6 md:px-12 lg:px-24 xl:px-32 pb-8 pt-6 md:absolute md:bottom-0 md:left-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 border-t border-white/20 pt-6">
           {[
@@ -149,7 +149,7 @@ const Hero = () => {
       </motion.div>
 
       {/* Carousel Indicators */}
-      <div className="absolute right-6 md:right-12 lg:right-24 bottom-32 md:bottom-1/2 md:translate-y-1/2 flex md:flex-col gap-3 z-20">
+      <div className="absolute right-6 md:right-12 lg:right-24 bottom-6 md:bottom-1/2 md:translate-y-1/2 flex md:flex-col gap-3 z-20">
         {images.map((_, idx) => (
           <button
             key={idx}

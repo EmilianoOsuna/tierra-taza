@@ -1,34 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
 
 const CustomScrollbar = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
+  const containerRef = useRef(null);
+  const dotRef = useRef(null);
 
   useEffect(() => {
     let timeoutId;
 
     const handleScroll = () => {
-      // Calculate scroll progress percentage
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const currentScroll = window.scrollY;
       
       if (scrollHeight > 0) {
-        setScrollProgress(currentScroll / scrollHeight);
+        const progress = currentScroll / scrollHeight;
+        if (dotRef.current) {
+          dotRef.current.style.top = `${progress * 100}%`;
+          dotRef.current.style.transform = `translateY(-${progress * 100}%)`;
+        }
       }
 
-      setIsScrolling(true);
-      
-      // Reset the timeout whenever scrolling happens
+      if (containerRef.current) {
+        containerRef.current.style.opacity = '1';
+      }
+
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        setIsScrolling(false);
-      }, 1200); // Hide after 1.2 seconds of inactivity
+        if (containerRef.current) {
+          containerRef.current.style.opacity = '0';
+        }
+      }, 1000); // Ocultar después de 1 segundo de inactividad
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     
-    // Initial check to set the dot position
+    // Llamada inicial para fijar posición
     handleScroll();
 
     return () => {
@@ -38,25 +43,16 @@ const CustomScrollbar = () => {
   }, []);
 
   return (
-    <AnimatePresence>
-      {isScrolling && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
-          className="fixed right-3 top-2 bottom-2 w-4 z-[100] pointer-events-none flex justify-center"
-        >
-          <div 
-            className="absolute w-2.5 h-2.5 rounded-full bg-[#5C4F44] shadow-sm shadow-black/20"
-            style={{ 
-              top: `${scrollProgress * 100}%`,
-              transform: `translateY(-${scrollProgress * 100}%)`
-            }}
-          />
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div
+      ref={containerRef}
+      className="fixed right-3 top-2 bottom-2 w-4 z-[100] pointer-events-none flex justify-center transition-opacity duration-300 opacity-0"
+    >
+      <div 
+        ref={dotRef}
+        className="absolute w-2.5 h-2.5 rounded-full bg-[#5C4F44] shadow-sm shadow-black/20"
+        style={{ top: '0%', transform: 'translateY(0%)' }}
+      />
+    </div>
   );
 };
 

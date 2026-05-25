@@ -10,13 +10,13 @@ const Navbar = () => {
         <span className="font-serif font-medium text-lg hidden sm:block tracking-wide">Tierra & Taza</span>
       </div>
       <div className="hidden md:flex gap-10">
-        {['Inicio', 'About us', 'El recorrido', 'Contacto'].map((item) => (
+        {['Inicio', 'Nosotros', 'El recorrido', 'Contacto'].map((item) => (
           <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`} className="text-xs uppercase tracking-widest text-white/70 hover:text-white transition-colors">
             {item}
           </a>
         ))}
       </div>
-      <motion.button 
+      <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className="text-xs uppercase tracking-widest border border-white/30 text-white px-6 py-2.5 rounded-full hover:bg-white/10 transition-colors cursor-pointer backdrop-blur-sm"

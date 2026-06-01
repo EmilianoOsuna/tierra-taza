@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Tour from './components/Tour';
+import MapSection from './components/MapSection';
 import Contact from './components/Contact';
 import Reservation from './components/Reservation';
 import Footer from './components/Footer';
@@ -45,6 +46,8 @@ function App() {
         <About />
         <div className="h-px bg-primary-200 w-full"></div>
         <Tour />
+        <div className="h-px bg-primary-200 w-full"></div>
+        <MapSection />
         <div className="h-px bg-primary-200 w-full"></div>
         <Contact />
         <Reservation />

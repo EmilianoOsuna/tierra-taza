@@ -4,7 +4,7 @@ import { ArrowRight, Calendar, Users } from 'lucide-react';
 
 const Reservation = () => {
   return (
-    <section className="relative px-6 md:px-12 lg:px-24 xl:px-32 py-24 md:py-32 flex items-center justify-center min-h-[700px] overflow-hidden">
+    <section id="reservar" className="relative px-6 md:px-12 lg:px-24 xl:px-32 py-24 md:py-32 flex items-center justify-center min-h-[700px] overflow-hidden">
 
       {/* Background Image & Overlays */}
       <div className="absolute inset-0 z-0">
@@ -44,17 +44,26 @@ const Reservation = () => {
             </h2>
 
             <p className="text-sm md:text-base text-white/70 leading-[1.7] font-light mb-8 max-w-md">
-              Grupos limitados a 12 personas para garantizar una inmersión completa. Reserva con anticipación.
+              Grupos de hasta 13 personas para garantizar una experiencia íntima e inmersiva. Reserva tu lugar con anticipación.
             </p>
 
-            <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/10">
-              <div>
-                <div className="text-white text-2xl font-serif mb-1">850 <span className="text-sm font-sans">MXN</span></div>
-                <div className="text-[10px] text-white/50 uppercase tracking-widest">Desde (Por persona)</div>
-              </div>
-              <div>
-                <div className="text-white text-2xl font-serif mb-1">8:00 <span className="text-sm font-sans">AM</span></div>
-                <div className="text-[10px] text-white/50 uppercase tracking-widest">Salida desde Tepic</div>
+            <div className="pt-6 border-t border-white/10 space-y-4">
+              <div className="text-[10px] text-primary-300 uppercase tracking-widest font-semibold mb-2">Precios & Salidas</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-white/5 p-4 rounded-xl border border-white/5 backdrop-blur-sm">
+                  <div className="text-[10px] text-white/60 uppercase tracking-widest font-semibold mb-2">Desde Tepic (1h 20m)</div>
+                  <div className="space-y-1">
+                    <div className="text-white text-lg font-serif">$1,250 <span className="text-[10px] font-sans text-white/70">MXN Nac.</span></div>
+                    <div className="text-white text-lg font-serif">$95 <span className="text-[10px] font-sans text-white/70">USD Int.</span></div>
+                  </div>
+                </div>
+                <div className="bg-white/5 p-4 rounded-xl border border-white/5 backdrop-blur-sm">
+                  <div className="text-[10px] text-white/60 uppercase tracking-widest font-semibold mb-2">Desde Vallarta</div>
+                  <div className="space-y-1">
+                    <div className="text-white text-lg font-serif">$1,500 <span className="text-[10px] font-sans text-white/70">MXN Nac.</span></div>
+                    <div className="text-white text-lg font-serif">$115 <span className="text-[10px] font-sans text-white/70">USD Int.</span></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -66,6 +75,7 @@ const Reservation = () => {
                 <input
                   type="text"
                   placeholder="Tu nombre completo"
+                  required
                   className="w-full px-5 py-4 text-sm border border-white/10 rounded-xl bg-black/20 text-white focus:outline-none focus:border-primary-400 focus:bg-black/40 transition-all placeholder:text-white/30"
                 />
               </div>
@@ -74,24 +84,58 @@ const Reservation = () => {
                 <input
                   type="text"
                   placeholder="Número de WhatsApp"
+                  required
                   className="w-full px-5 py-4 text-sm border border-white/10 rounded-xl bg-black/20 text-white focus:outline-none focus:border-primary-400 focus:bg-black/40 transition-all placeholder:text-white/30"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-5">
+              {/* Departure Point and Traveler Type Dropdowns */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="relative">
+                  <select
+                    className="w-full px-5 py-4 text-sm border border-white/10 rounded-xl bg-black/20 text-white focus:outline-none focus:border-primary-400 focus:bg-black/40 transition-all cursor-pointer appearance-none"
+                    defaultValue=""
+                    required
+                  >
+                    <option value="" disabled className="bg-neutral-900 text-white/40">Salida desde...</option>
+                    <option value="tepic" className="bg-neutral-900 text-white">Catedral de Tepic</option>
+                    <option value="vallarta" className="bg-neutral-900 text-white">Plaza Puerto Mágico, PV</option>
+                  </select>
+                  <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-white/40 text-[9px]">▼</div>
+                </div>
+
+                <div className="relative">
+                  <select
+                    className="w-full px-5 py-4 text-sm border border-white/10 rounded-xl bg-black/20 text-white focus:outline-none focus:border-primary-400 focus:bg-black/40 transition-all cursor-pointer appearance-none"
+                    defaultValue=""
+                    required
+                  >
+                    <option value="" disabled className="bg-neutral-900 text-white/40">Tipo viajero</option>
+                    <option value="nacional" className="bg-neutral-900 text-white">Nacional</option>
+                    <option value="internacional" className="bg-neutral-900 text-white">Internacional</option>
+                  </select>
+                  <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-white/40 text-[9px]">▼</div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="relative flex items-center">
                   <Calendar size={18} className="absolute left-5 text-white/40 pointer-events-none" />
                   <input
                     type="text"
                     placeholder="Fecha"
+                    required
                     className="w-full pl-12 pr-5 py-4 text-sm border border-white/10 rounded-xl bg-black/20 text-white focus:outline-none focus:border-primary-400 focus:bg-black/40 transition-all placeholder:text-white/30"
                   />
                 </div>
                 <div className="relative flex items-center">
                   <Users size={18} className="absolute left-5 text-white/40 pointer-events-none" />
                   <input
-                    type="text"
-                    placeholder="Personas"
+                    type="number"
+                    min="1"
+                    max="13"
+                    placeholder="Personas (max 13)"
+                    required
                     className="w-full pl-12 pr-5 py-4 text-sm border border-white/10 rounded-xl bg-black/20 text-white focus:outline-none focus:border-primary-400 focus:bg-black/40 transition-all placeholder:text-white/30"
                   />
                 </div>

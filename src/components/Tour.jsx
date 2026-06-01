@@ -88,7 +88,7 @@ const Tour = () => {
             </motion.div>
           ))}
         </div>
-
+        
       </div>
     </section>
   );

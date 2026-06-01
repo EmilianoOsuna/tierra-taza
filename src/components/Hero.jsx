@@ -134,7 +134,7 @@ const Hero = () => {
               label: 'Ilimitado' 
             },
             { num: '1 día', label: 'Experiencia completa' },
-            { num: '$850', label: 'MXN por persona' }
+            { num: 'Desde $1,250', label: 'MXN por persona' }
           ].map((stat, i) => (
             <div key={i} className="flex flex-col">
               <div className="font-serif text-2xl md:text-3xl font-light text-white mb-1 drop-shadow-md">
